@@ -6,11 +6,7 @@ resource "aws_instance" "example" {
     Name = "example"
   }
 
-  user_data = <<EOF
-    #!/bin/bash
-    yum install -y httpd
-    systemctl start httpd.service
-EOF
+  user_data = data.template_file.httpd_user_data.rendered
 
 }
 
